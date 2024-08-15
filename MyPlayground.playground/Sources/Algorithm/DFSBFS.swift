@@ -79,3 +79,18 @@ public func findPath(_ n: Int, _ arr: [[Int]]) -> [[Int]] {
     }
     return result
 }
+
+// let n = Int(readLine()!)!
+// var arr = [[Int]]()
+// for _ in 0..<n {
+//     let temp = readLine()!.split(separator: " ").map { Int($0)! }
+//     arr.append(temp)
+// }
+//
+// let result = findPath(n, arr)
+// for i in 0..<result.count {
+//     for j in 0..<result.count {
+//         print(result[i][j], terminator: " ")
+//     }
+//     print("")
+// }

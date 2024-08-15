@@ -1,8 +1,8 @@
 import Foundation
 
-public class Node<T> {
+public class SingleNode<T> {
     var value: T
-    var next: Node<T>?
+    var next: SingleNode<T>?
     
     init(value: T) {
         self.value = value
@@ -10,7 +10,7 @@ public class Node<T> {
 }
 
 public class SingleLinkedList<T> {
-    private var head: Node<T>?
+    private var head: SingleNode<T>?
     
     public init() {}
     
@@ -22,7 +22,7 @@ public class SingleLinkedList<T> {
             return
         }
         
-        let newNode: Node = .init(value: value)
+        let newNode: SingleNode = .init(value: value)
         newNode.next = head
         head = newNode
     }
@@ -66,9 +66,9 @@ public class SingleLinkedList<T> {
         self.head = nil
     }
     
-    public func search(with value: T) -> Node<T>? where T: Equatable {
+    public func search(with value: T) -> SingleNode<T>? where T: Equatable {
         if let head {
-            var currentNode: Node<T>? = head
+            var currentNode: SingleNode<T>? = head
             while let tempNode = currentNode {
                 if tempNode.value == value {
                     return tempNode
@@ -81,14 +81,14 @@ public class SingleLinkedList<T> {
     
     // head를 제거하려할 때만 따로 head와 head.next를 바꿔치기 해준다.
     // 그 다음 node들을 제거하려는 경우 priorNode를 저장하면서 priorNode의 next와 currentNode.next를 연결해주고 currentNode는 return되면서 레퍼 카운트가 0으로 바뀜.
-    public func remove(with value: T) -> Node<T>? where T: Equatable {
+    public func remove(with value: T) -> SingleNode<T>? where T: Equatable {
         if let head {
             if head.value == value {
                 self.head = head.next
                 return head
             }
-            var currentNode: Node<T>? = head
-            var priorNode: Node<T>?
+            var currentNode: SingleNode<T>? = head
+            var priorNode: SingleNode<T>?
             while let tempNode = currentNode {
                 if tempNode.value == value {
                     // 삭제
@@ -100,6 +100,39 @@ public class SingleLinkedList<T> {
             }
         }
         return nil
+    }
+    
+    // 정렬하면서 추가
+    public func insertNodeSort(_ value: T) where T: Comparable {
+        // head가 없는 경우
+        guard let head else {
+            self.head = .init(value: value)
+            return
+        }
+        let newNode: SingleNode = .init(value: value)
+        // 가장 작은 값이 들어온 경우
+        guard head.value < value else {
+            newNode.next = head
+            self.head = newNode
+            return
+        }
+        // 중간에 들어가는 경우
+        var currentNode = self.head
+        var previousNode = self.head
+        // 1 -> 3 -> 5
+        // new = 2
+        while currentNode?.next != nil {
+            currentNode = currentNode?.next
+            if let currentNode,
+               currentNode.value > newNode.value {
+                newNode.next = currentNode
+                previousNode?.next = newNode
+                return
+            }
+            previousNode = currentNode
+        }
+        // 마지막에 들어가는 경우
+        currentNode?.next = newNode
     }
 }
 
