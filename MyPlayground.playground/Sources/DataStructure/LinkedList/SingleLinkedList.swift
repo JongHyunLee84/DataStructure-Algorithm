@@ -12,7 +12,11 @@ public class SingleNode<T> {
 public class SingleLinkedList<T> {
     private var head: SingleNode<T>?
     
-    public init() {}
+    public init(
+        head: SingleNode<T>? = nil
+    ) {
+        self.head = head
+    }
     
     // head가 없다면 head에 넣고 끝, head가 있다면 새로운 노드를 만들고, 해당 노드의 next에 원래 head 값을, head에는 newNode를 할당
     // O(1)
@@ -29,7 +33,7 @@ public class SingleLinkedList<T> {
     
     // head부터 시작하여 nil이 아니라면 프린트 후 next를 할당, next가 nil이 아니라면 같은 작업 반복
     public func display() {
-        var currentNode: Node? = head
+        var currentNode: SingleNode? = head
         while let tempNode = currentNode {
             print(tempNode.value, terminator: " ")
             currentNode = tempNode.next
