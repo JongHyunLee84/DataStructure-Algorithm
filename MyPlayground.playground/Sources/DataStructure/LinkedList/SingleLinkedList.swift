@@ -10,7 +10,7 @@ public class SingleNode<T> {
 }
 
 public class SingleLinkedList<T> {
-    private var head: SingleNode<T>?
+    public var head: SingleNode<T>?
     
     public init(
         head: SingleNode<T>? = nil
@@ -18,6 +18,19 @@ public class SingleLinkedList<T> {
         self.head = head
     }
     
+    public var isEmpty: Bool {
+        head == nil
+    }
+    
+    public var count: Int {
+        var count = 0
+        var currentNode: SingleNode<T>? = head
+        while let tempNode = currentNode {
+            count += 1
+            currentNode = tempNode.next
+        }
+        return count
+    }
     // head가 없다면 head에 넣고 끝, head가 있다면 새로운 노드를 만들고, 해당 노드의 next에 원래 head 값을, head에는 newNode를 할당
     // O(1)
     public func insertFront(_ value: T) {
@@ -54,14 +67,18 @@ public class SingleLinkedList<T> {
         currentNode?.next = .init(value: value)
     }
     
-    public func removeFirst() {
+    public func removeFirst() -> T? {
         if let head {
+            let value = head.value
             if let next = head.next {
                 self.head = next
+                return value
             } else {
                 self.head = nil
+                return value
             }
         }
+        return nil
     }
     
     // head를 nil로 할당하면 순서대로 reference count가 0이되기 때문에 모두 메모리에서 해제됨.
