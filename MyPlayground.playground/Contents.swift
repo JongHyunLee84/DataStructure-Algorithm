@@ -1,8 +1,5 @@
 import Foundation
 
-var table = HashTable<String, String>(capacity: 10)
+let numbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]
 
-table["hello"] = "world"
-print(table["hello"])
-table["hello"] = "world2"
-print(table["hello"])
+binarySearch(numbers, key: 53, range: 0..<numbers.count)  // gives 13

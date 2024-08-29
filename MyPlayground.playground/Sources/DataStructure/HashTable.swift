@@ -41,6 +41,7 @@ public struct HashTable<Key: Hashable, Value> {
         return nil  // key not in hash table
     }
     
+    @discardableResult
     public mutating func updateValue(_ value: Value, forKey key: Key) -> Value? {
         let index = self.index(forKey: key)
         
@@ -59,6 +60,7 @@ public struct HashTable<Key: Hashable, Value> {
         return nil
     }
     
+    @discardableResult
     public mutating func removeValue(forKey key: Key) -> Value? {
         let index = self.index(forKey: key)
         
