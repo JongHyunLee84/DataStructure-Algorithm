@@ -1,5 +1,9 @@
 import Foundation
 
+// Stack 두개로 Queue를 구현했을 때 장점
+// dequeue 시에 stack 하나를 reverse 하여 전달해서 특정 경우에(이미 reverse해서 넘겨준 경우에)
+// O(1)로 dequeue가 가능하다. 
+
 public struct QueueWithDoubleStack<T> {
     private var enqueueStack = Array<T>()
     private var dequeueStack = Array<T>()
