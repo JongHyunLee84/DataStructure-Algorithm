@@ -1,5 +1,16 @@
 import Foundation
 
-let numbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]
+var queue = QueueWithDoubleStack<Int>()
 
-binarySearch(numbers, key: 53, range: 0..<numbers.count)  // gives 13
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+
+queue.peek
+queue.dequeue()
+queue.peek
+queue.dequeue()
+queue.peek
+queue.dequeue()
+queue.isEmpty
+
