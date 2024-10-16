@@ -9,6 +9,13 @@ public struct BinaryIndexedTree {
         self.elements = Array(repeating: 0, count: size + 1)
     }
     
+    public init(size: Int, value: Int) {
+        self.init(size: size)
+        for i in 0..<size {
+            update(idx: i, value: value)
+        }
+    }
+    
     public func sum(_ idx: Int) -> Int {
         var idx = idx + 1 // BIT 인덱스로 변환
         var sum = 0

@@ -1,9 +1,9 @@
 import Foundation
 
 public class DoubleNode<T> {
-    var next: DoubleNode?
-    weak var prev: DoubleNode? // 이전 노드와 다음 노드 간 서로의 ref count를 올리기에 레퍼런스 사이클 발생
-    var value: T
+    public var next: DoubleNode?
+    public weak var prev: DoubleNode? // 이전 노드와 다음 노드 간 서로의 ref count를 올리기에 레퍼런스 사이클 발생
+    public var value: T
     
     public init(
         next: DoubleNode? = nil,
@@ -17,8 +17,8 @@ public class DoubleNode<T> {
 }
 
 public class DoubleLinkedList<T> {
-    var head: DoubleNode<T>?
-    var tail: DoubleNode<T>?
+    public var head: DoubleNode<T>?
+    public var tail: DoubleNode<T>?
     
     public init(
         head: DoubleNode<T>? = nil,
@@ -26,6 +26,19 @@ public class DoubleLinkedList<T> {
     ) {
         self.head = head
         self.tail = tail
+    }
+    
+    public subscript(index: Int) -> DoubleNode<T>? {
+        var currentNode = head
+        var idx = 0
+        while currentNode != nil {
+            if idx == index {
+                return currentNode
+            }
+            currentNode = currentNode?.next
+            idx += 1
+        }
+        return nil
     }
     
     public func insertFirst(_ value: T) {
@@ -191,16 +204,18 @@ public class DoubleLinkedList<T> {
     public func print() {
         var currentNode = head
         while currentNode != nil {
-            Swift.print(currentNode!.value)
+            Swift.print(currentNode!.value, terminator: " ")
             currentNode = currentNode?.next
         }
+        Swift.print("")
     }
     
     public func printReverse() {
         var currentNode = tail
         while currentNode != nil {
-            Swift.print(currentNode!.value)
+            Swift.print(currentNode!.value, terminator: " ")
             currentNode = currentNode?.prev
         }
+        Swift.print("")
     }
 }

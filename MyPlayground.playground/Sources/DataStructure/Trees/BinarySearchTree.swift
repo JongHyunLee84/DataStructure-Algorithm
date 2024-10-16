@@ -91,8 +91,6 @@ public struct BinarySearchTree<T: Comparable> {
         var current = root
 
         while let node = current {
-            print(current?.value)
-
             if node.value == value {
                 return true
             }

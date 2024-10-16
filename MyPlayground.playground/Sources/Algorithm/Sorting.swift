@@ -78,7 +78,6 @@ public func mergeSort<T: Comparable>(_ array: [T]) -> [T] {
     let mid = array.count / 2
     let left = Array(array[0..<mid])
     let right = Array(array[mid..<array.count])
-    print(left, right)
     return mergeTwoArray(mergeSort(left), mergeSort(right))
 }
 
